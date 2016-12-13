@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.adp.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.adp.com" xmlns:intf="http://service.adp.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.adp.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="print">
+    <complexType/>
+   </element>
+   <element name="printResponse">
+    <complexType/>
+   </element>
+   <element name="getSum">
+    <complexType>
+     <sequence>
+      <element name="a" type="xsd:int"/>
+      <element name="b" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSumResponse">
+    <complexType>
+     <sequence>
+      <element name="getSumReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDiff">
+    <complexType>
+     <sequence>
+      <element name="a" type="xsd:int"/>
+      <element name="b" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getDiffResponse">
+    <complexType>
+     <sequence>
+      <element name="getDiffReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getDiffRequest">
+
+      <wsdl:part element="impl:getDiff" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSumResponse">
+
+      <wsdl:part element="impl:getSumResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="printResponse">
+
+      <wsdl:part element="impl:printResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDiffResponse">
+
+      <wsdl:part element="impl:getDiffResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSumRequest">
+
+      <wsdl:part element="impl:getSum" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="printRequest">
+
+      <wsdl:part element="impl:print" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CalculatorService">
+
+      <wsdl:operation name="print">
+
+         <wsdl:input message="impl:printRequest" name="printRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:printResponse" name="printResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSum">
+
+         <wsdl:input message="impl:getSumRequest" name="getSumRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getSumResponse" name="getSumResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDiff">
+
+         <wsdl:input message="impl:getDiffRequest" name="getDiffRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getDiffResponse" name="getDiffResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CalculatorServiceSoapBinding" type="impl:CalculatorService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="print">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="printRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="printResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSum">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSumRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSumResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDiff">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDiffRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDiffResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CalculatorServiceService">
+
+      <wsdl:port binding="impl:CalculatorServiceSoapBinding" name="CalculatorService">
+
+         <wsdlsoap:address location="http://localhost:8080/CalcDemoSoap/services/CalculatorService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
