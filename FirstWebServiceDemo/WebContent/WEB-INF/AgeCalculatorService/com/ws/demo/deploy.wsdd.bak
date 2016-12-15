@@ -1,0 +1,43 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AgeCalculatorService WSDL service -->
+
+  <service name="AgeCalculator" provider="java:RPC" style="document" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://demo.ws.com"/>
+      <parameter name="wsdlServiceElement" value="AgeCalculatorService"/>
+      <parameter name="schemaQualified" value="http://demo.ws.com"/>
+      <parameter name="wsdlServicePort" value="AgeCalculator"/>
+      <parameter name="className" value="com.ws.demo.AgeCalculatorSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="AgeCalculator"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getSum" qname="getSum" returnQName="retNS:getSumReturn" xmlns:retNS="http://demo.ws.com" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:a" xmlns:pns="http://demo.ws.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:b" xmlns:pns="http://demo.ws.com" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getStudent" qname="getStudent" returnQName="retNS:getStudentReturn" xmlns:retNS="http://demo.ws.com" returnType="rtns:Student" xmlns:rtns="http://demo.ws.com" soapAction="" >
+      </operation>
+      <operation name="sayHello" qname="sayHello" returnQName="retNS:sayHelloReturn" xmlns:retNS="http://demo.ws.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:inputMessage" xmlns:pns="http://demo.ws.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="sayHello getSum getStudent"/>
+
+      <typeMapping
+        xmlns:ns="http://demo.ws.com"
+        qname="ns:Student"
+        type="java:com.ws.demo.Student"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

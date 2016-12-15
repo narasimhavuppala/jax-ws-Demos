@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AgeCalculatorService" targetNamespace="http://com.demo.test" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://com.demo.test" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://demo.ws.com/" version="1.0" xmlns:tns="http://demo.ws.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="getSum" type="tns:getSum"/>
+
+  <xs:element name="getSumResponse" type="tns:getSumResponse"/>
+
+  <xs:element name="sayHello" type="tns:sayHello"/>
+
+  <xs:element name="sayHelloResponse" type="tns:sayHelloResponse"/>
+
+  <xs:complexType name="sayHello">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="providedText" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sayHelloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SampleResponse" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getSum">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element name="arg1" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getSumResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://com.demo.test" xmlns:ns0="http://demo.ws.com/" xmlns:tns="http://com.demo.test" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="FetchStudent" type="tns:FetchStudent"/>
+  <xs:element name="FetchStudentResponse" type="tns:FetchStudentResponse"/>
+  <xs:element name="student" type="tns:student"/>
+  <xs:complexType name="FetchStudent">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="FetchStudentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:student"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="student">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="salary" type="xs:double"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sayHello" nillable="true" type="ns0:sayHello"/>
+  <xs:element name="sayHelloResponse" nillable="true" type="ns0:sayHelloResponse"/>
+  <xs:element name="getSum" nillable="true" type="ns0:getSum"/>
+  <xs:element name="getSumResponse" nillable="true" type="ns0:getSumResponse"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="FetchStudent">
+    <wsdl:part name="parameters" element="tns:FetchStudent">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSum">
+    <wsdl:part name="parameters" element="tns:getSum">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSumResponse">
+    <wsdl:part name="parameters" element="tns:getSumResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="FetchStudentResponse">
+    <wsdl:part name="parameters" element="tns:FetchStudentResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHelloResponse">
+    <wsdl:part name="parameters" element="tns:sayHelloResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHello">
+    <wsdl:part name="parameters" element="tns:sayHello">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AgeCalculator">
+    <wsdl:operation name="sayHello">
+      <wsdl:input name="sayHello" message="tns:sayHello">
+    </wsdl:input>
+      <wsdl:output name="sayHelloResponse" message="tns:sayHelloResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSum">
+      <wsdl:input name="getSum" message="tns:getSum">
+    </wsdl:input>
+      <wsdl:output name="getSumResponse" message="tns:getSumResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchStudent">
+      <wsdl:input name="FetchStudent" message="tns:FetchStudent">
+    </wsdl:input>
+      <wsdl:output name="FetchStudentResponse" message="tns:FetchStudentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AgeCalculatorServiceSoapBinding" type="tns:AgeCalculator">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sayHello">
+      <soap12:operation soapAction="urn:SayHello" style="document"/>
+      <wsdl:input name="sayHello">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHelloResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSum">
+      <soap12:operation soapAction="urn:GetSum" style="document"/>
+      <wsdl:input name="getSum">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSumResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchStudent">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="FetchStudent">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="FetchStudentResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AgeCalculatorService">
+    <wsdl:port name="AgeCalculatorPort" binding="tns:AgeCalculatorServiceSoapBinding">
+      <soap12:address location="http://localhost:8080/FirstWebServiceDemo/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
